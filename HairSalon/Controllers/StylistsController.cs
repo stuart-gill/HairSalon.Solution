@@ -41,26 +41,26 @@ namespace HairSalon.Controllers
       return View(model);
     }
 
-    [HttpGet("/stylists/{stylistId}/delete")]
-    public ActionResult Delete(int stylistId)
-    {
-      // Dictionary<string, object> model = new Dictionary<string, object>();
-      // Stylist selectedStylist = Stylist.Find(stylistId);
-      // model.Add("stylist", selectedStylist);
-      // model.Add("clients", stylistClients);
-      Stylist.DeleteClients(stylistId);
-      Stylist.Delete(stylistId);
-      return View();
-    }
+    // [HttpGet("/stylists/{stylistId}/delete")]
+    // public ActionResult Delete(int stylistId)
+    // {
+    //   // Dictionary<string, object> model = new Dictionary<string, object>();
+    //   // Stylist selectedStylist = Stylist.Find(stylistId);
+    //   // model.Add("stylist", selectedStylist);
+    //   // model.Add("clients", stylistClients);
+    //   Stylist.DeleteClients(stylistId);
+    //   Stylist.Delete(stylistId);
+    //   return View();
+    // }
 
 
     //This one creates new Clients within a given Stylist, not new Stylists:
-    [HttpPost("/stylists/{stylistId}/clients")]
-    public ActionResult Create(int stylistId, string clientName, int clientPhone)
+    [HttpPost("/stylists/{id}/clients")]
+    public ActionResult Create(int id, string clientName, int clientPhone)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
-      Stylist foundStylist = Stylist.Find(stylistId);
-      Client newClient = new Client(clientName, clientPhone, stylistId);
+      Stylist foundStylist = Stylist.Find(id);
+      Client newClient = new Client(clientName, clientPhone, id);
       newClient.Save();
       List<Client> stylistClients = foundStylist.GetClients();
       model.Add("clients", stylistClients);
