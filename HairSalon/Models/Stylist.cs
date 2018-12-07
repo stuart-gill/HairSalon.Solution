@@ -5,7 +5,7 @@ using HairSalon;
 
 namespace HairSalon.Models
 {
-    public class CustomClassHere
+    public class Stylist
     {
 
     }
