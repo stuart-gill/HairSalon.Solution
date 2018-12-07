@@ -1,0 +1,22 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+
+<h1>Client Details: </h1>
+
+<h2>@Model["client"].GetName()</h2>
+<h3>Cuisine: @Model["stylist"].GetName()</h3>
+<h3>Notes: @Model["client"].GetPhone()</h3>
+
+
+<a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/edit'>Edit this Client</a>
+<br>
+<a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client</a>
+<br>
+<p><a href='/stylists/@Model["stylist"].GetId()/clients/@Model["client"].GetId()/delete'>Delete this client</a></p>
+<br>
+<a href='/stylists'>View all stylists</a>
+
+</div>

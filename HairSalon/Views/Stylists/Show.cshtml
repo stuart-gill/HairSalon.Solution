@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+
+<h3>Here are all of @Model["stylist"].GetName()'s clients:</h3>
+
+@if (@Model["clients"].Count == 0)
+{
+  <h4>No clients have been added yet!</h4>
+}
+
+<ol>
+@foreach (var client in @Model["clients"])
+{
+  <li><a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()'>@client.GetName()</a></li>
+}
+</ol>
+
+<p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client!</a></p>
+<p><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist and its content.</a></p>
+<p><a href='/stylists'>Return to stylist list</a></p>
+<p><a href='/'>Return to Main Page</a></p>
+
+</div>
