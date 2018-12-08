@@ -56,7 +56,7 @@ namespace HairSalon.Controllers
 
     //creates new Clients within a given Stylist:
     [HttpPost("/stylists/{id}")]
-    public ActionResult Create(int id, string clientName, int clientPhone)
+    public ActionResult Create(int id, string clientName, string clientPhone)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
       Stylist foundStylist = Stylist.Find(id);

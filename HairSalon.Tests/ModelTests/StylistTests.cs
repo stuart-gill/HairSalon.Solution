@@ -11,7 +11,7 @@ namespace HairSalon.Tests
 
     public StylistTest()
     {
-      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=hair_salon_test;";
+      DBConfiguration.ConnectionString = "server=localhost;user id=root;password=root;port=8889;database=stuart_gill_test;";
     }
 
     public void Dispose()
@@ -166,9 +166,9 @@ namespace HairSalon.Tests
       //Arrange, Act
       Stylist testStylist = new Stylist("Jenny", "perms");
       testStylist.Save();
-      Client firstClient = new Client("George", 2065555555, testStylist.GetId());
+      Client firstClient = new Client("George", "2065555555", testStylist.GetId());
       firstClient.Save();
-      Client secondClient = new Client("Soraya", 2085555555, testStylist.GetId());
+      Client secondClient = new Client("Soraya", "2085555555", testStylist.GetId());
       secondClient.Save();
       List<Client> testClientList = new List<Client> {firstClient, secondClient};
       List<Client> resultClientList = testStylist.GetClients();

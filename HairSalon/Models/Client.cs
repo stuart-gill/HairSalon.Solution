@@ -9,10 +9,10 @@ namespace HairSalon.Models
     {
         private int _clientId;
         private string _clientName;
-        private int _clientPhone;
+        private string _clientPhone;
         private int _stylistId;
 
-        public Client (string clientName, int clientPhone, int stylistId, int clientId = 0)
+        public Client (string clientName, string clientPhone, int stylistId, int clientId = 0)
         {
             _clientName = clientName;
             _clientPhone = clientPhone;
@@ -40,12 +40,12 @@ namespace HairSalon.Models
             return _stylistId;
         }
         
-        public int GetPhone()
+        public string GetPhone()
         {
             return _clientPhone;
         }
 
-        public void SetPhone(int newClientPhone)
+        public void SetPhone(string newClientPhone)
         {
             _clientPhone = newClientPhone;
         }
@@ -62,7 +62,7 @@ namespace HairSalon.Models
             {
                 int clientId = rdr.GetInt32(0);
                 string clientName = rdr.GetString(1);
-                int clientPhone = rdr.GetInt32(2);
+                string clientPhone = rdr.GetString(2);
                 int stylistId = rdr.GetInt32(3);
                 Client newClient = new Client(clientName, clientPhone, stylistId, clientId);
                 allClients.Add(newClient);
@@ -88,13 +88,13 @@ namespace HairSalon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int clientId = 0;
             string clientName = "";
-            int clientPhone = 0;
+            string clientPhone = "";
             int stylistId = 0;
             while(rdr.Read())
                 {
                     clientId = rdr.GetInt32(0);
                     clientName = rdr.GetString(1);
-                    clientPhone = rdr.GetInt32(2);
+                    clientPhone = rdr.GetString(2);
                     stylistId = rdr.GetInt32(3);
                 }
             Client newClient = new Client(clientName, clientPhone, stylistId, clientId);
@@ -149,7 +149,7 @@ namespace HairSalon.Models
                 }
         }
 
-        public void Edit(string newName, int newPhone)
+        public void Edit(string newName, string newPhone)
         {
             MySqlConnection conn = DB.Connection();
             conn.Open();
@@ -190,5 +190,24 @@ namespace HairSalon.Models
             conn.Dispose();
             }
           }
+
+           public static void Delete(int id)
+            {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM clients WHERE client_id = @thisId;";
+            
+            MySqlParameter thisId = new MySqlParameter();
+            thisId.ParameterName = "@thisId";
+            thisId.Value = id;
+            cmd.Parameters.Add(thisId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+            conn.Dispose();
+            }
+            }
     }
 }
