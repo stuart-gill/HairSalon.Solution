@@ -39,6 +39,16 @@ namespace HairSalon.Models
         {
             return _stylistId;
         }
+        
+        public int GetPhone()
+        {
+            return _clientPhone;
+        }
+
+        public void SetPhone(int newClientPhone)
+        {
+            _clientPhone = newClientPhone;
+        }
 
         public static List<Client> GetAll()
         {
@@ -137,6 +147,34 @@ namespace HairSalon.Models
                 {
                     conn.Dispose();
                 }
+        }
+
+        public void Edit(string newName, int newPhone)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"UPDATE clients SET client_name = @newName, client_phone = @newPhone WHERE client_id = @searchId;";
+            MySqlParameter searchId = new MySqlParameter();
+            searchId.ParameterName = "@searchId";
+            searchId.Value = _clientId;
+            cmd.Parameters.Add(searchId);
+            MySqlParameter name = new MySqlParameter();
+            name.ParameterName = "@newName";
+            name.Value = newName;
+            cmd.Parameters.Add(name);
+            MySqlParameter phone = new MySqlParameter();
+            phone.ParameterName = "@newPhone";
+            phone.Value = newPhone;
+            cmd.Parameters.Add(phone);
+            cmd.ExecuteNonQuery();
+            _clientName = newName;
+            _clientPhone = newPhone;
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
         }
 
         public static void ClearAll()

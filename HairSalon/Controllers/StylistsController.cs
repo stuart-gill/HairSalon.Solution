@@ -54,8 +54,8 @@ namespace HairSalon.Controllers
     // }
 
 
-    //This one creates new Clients within a given Stylist, not new Stylists:
-    [HttpPost("/stylists/{id}/clients")]
+    //creates new Clients within a given Stylist:
+    [HttpPost("/stylists/{id}")]
     public ActionResult Create(int id, string clientName, int clientPhone)
     {
       Dictionary<string, object> model = new Dictionary<string, object>();
