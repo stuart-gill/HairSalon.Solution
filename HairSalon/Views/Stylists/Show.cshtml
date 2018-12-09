@@ -8,7 +8,7 @@
 
 @if (@Model["clients"].Count == 0)
 {
-  <h4>No clients have been added yet!</h4>
+  <h4>@Model["stylist"].GetName() does not have any clients at the moment. Add one with the link below:</h4>
 }
 
 <ol>
@@ -19,7 +19,7 @@
 </ol>
 
 <p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client!</a></p>
-<p><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist and its content.</a></p>
+<p><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist and their client list.</a></p>
 <p><a href='/stylists'>Return to stylist list</a></p>
 <p><a href='/'>Return to Main Page</a></p>
 

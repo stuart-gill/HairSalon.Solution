@@ -58,7 +58,7 @@ namespace HairSalon.Controllers
       return View(model);
     }
 
-    [HttpPost("/clients/{stylistId}/clients/{clientId}")]
+    [HttpPost("/stylists/{stylistId}/clients/{clientId}")]
     public ActionResult Update(int stylistId, int clientId, string newName, string newPhone)
     {
       Client client = Client.Find(clientId);

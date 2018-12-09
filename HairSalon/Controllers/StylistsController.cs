@@ -41,17 +41,17 @@ namespace HairSalon.Controllers
       return View(model);
     }
 
-    // [HttpGet("/stylists/{stylistId}/delete")]
-    // public ActionResult Delete(int stylistId)
-    // {
-    //   // Dictionary<string, object> model = new Dictionary<string, object>();
-    //   // Stylist selectedStylist = Stylist.Find(stylistId);
-    //   // model.Add("stylist", selectedStylist);
-    //   // model.Add("clients", stylistClients);
-    //   Stylist.DeleteClients(stylistId);
-    //   Stylist.Delete(stylistId);
-    //   return View();
-    // }
+    //delete stylist and all their clients too
+    [HttpGet("/stylists/{stylistId}/delete")]
+    public ActionResult Delete(int stylistId)
+    {
+      Dictionary<string, object> model = new Dictionary<string, object>();
+      Stylist selectedStylist = Stylist.Find(stylistId);
+      model.Add("stylist", selectedStylist);
+      Stylist.DeleteThisStylistsClients(stylistId);
+      Stylist.Delete(stylistId);
+      return View(model);
+    }
 
 
     //creates new Clients within a given Stylist:
