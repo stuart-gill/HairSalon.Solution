@@ -147,55 +147,43 @@ namespace HairSalon.Tests
       Assert.AreEqual(testId, result);
     }
 
-    // [TestMethod]
-    // public void Edit_UpdatesClientInDatabase_String()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Soraya", 2065555555, 1);
-    //   testClient.Save();
-    //   string secondName = "Nathaniel";
+    [TestMethod]
+    public void Edit_UpdatesClientInDatabase_String()
+    {
+      //Arrange
+      Client testClient = new Client("Soraya", "2065555555", 1);
+      testClient.Save();
+      string secondName = "Nathaniel";
 
-    //   //Act
-    //   testClient.Edit(secondName);
-    //   string result = Client.Find(testClient.GetId()).GetName();
+      //Act
+      testClient.Edit(secondName, "5555555");
+      string result = Client.Find(testClient.GetId()).GetName();
 
-    //   //Assert
-    //   Assert.AreEqual(secondName, result);
-    // }
+      //Assert
+      Assert.AreEqual(secondName, result);
+    }
 
-    // [TestMethod]
-    // public void Delete_DeletesNameInDatabase_String()
-    // {
-    //   //Arrange
-    //   Client testClient = new Client("Soraya", 2065555555, 1);
-    //   testClient.Save();
-    //   string deletedName = "";
+    [TestMethod]
+    public void Delete_DeletesNameInDatabase_String()
+    {
+      //Arrange
+      Client testClient = new Client("Soraya", "2065555555", 1);
+      testClient.Save();
+      string deletedName = "";
 
-    //   //Act
-    //   testClient.Delete();
-    //   string result = Client.Find(testClient.GetId()).GetName();
+      //Act
+      Client.Delete(testClient.GetId());
+      string result = Client.Find(testClient.GetId()).GetName();
       
-    //   //Assert
-    //   Assert.AreEqual(deletedName, result);
-    // }
+      //Assert
+      Assert.AreEqual(deletedName, result);
+    }
 
   
 
     
 
-    // [TestMethod]
-    // public void GetCategoryId_ReturnsClientsParentCategoryId_Int()
-    // {
-    //   //Arrange
-    //   Category newCategory = new Category("Home Tasks");
-    //   Client newClient = new Client("Soraya", 1, newCategory.GetId());
-    //
-    //   //Act
-    //   int result = newClient.GetCategoryId();
-    //
-    //   //Assert
-    //   Assert.AreEqual(newCategory.GetId(), result);
-    // }
+
 
   }
 }

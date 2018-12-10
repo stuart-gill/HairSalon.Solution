@@ -42,19 +42,19 @@ namespace HairSalon.Tests
       Assert.AreEqual(name01, result);
     }
 
-    // [TestMethod]
-    // public void GetId_ReturnsStylistId_Int()
-    // {
-    //   //Arrange
-    //   string name = "Test Stylist";
-    //   Stylist newStylist = new Stylist(name);
-    //
-    //   //Act
-    //   int result = newStylist.GetId();
-    //
-    //   //Assert
-    //   Assert.AreEqual(1, result);
-    // }
+    [TestMethod]
+    public void GetId_ReturnsStylistId_Int()
+    {
+      //Arrange
+      string name = "Test Stylist";
+      Stylist newStylist = new Stylist(name, "specialty");
+    
+      //Act
+      int result = newStylist.GetId();
+    
+      //Assert
+      Assert.AreEqual(0, result);
+    }
 
     [TestMethod]
     public void GetAll_ReturnsAllStylistObjects_StylistList()
@@ -179,40 +179,40 @@ namespace HairSalon.Tests
 
     // [TestMethod]
 
-    // public void DeleteClients_DeletesAllClientsWithStylist_ClientList()
-    // {
-    //   //Arrange, Act
-    //   Stylist testStylist = new Stylist("Jenny", "perms");
-    //   testStylist.Save();
-    //   Client firstClient = new Client("George", 2065555555, testStylist.GetId());
-    //   firstClient.Save();
-    //   Client secondClient = new Client("Soraya", 2085555555, testStylist.GetId());
-    //   secondClient.Save();
-    //   List<Client> testClientList = new List<Client> {firstClient, secondClient};
-    //   testStylist.DeleteClients();
-    //   string result = firstClient.GetName();
-    //   string deletedDescription="";
+    public void DeleteClients_DeletesAllClientsWithStylist_ClientList()
+    {
+      //Arrange, Act
+      Stylist testStylist = new Stylist("Jenny", "perms");
+      testStylist.Save();
+      Client firstClient = new Client("George", "2065555555", testStylist.GetId());
+      firstClient.Save();
+      Client secondClient = new Client("Soraya", "2085555555", testStylist.GetId());
+      secondClient.Save();
+      List<Client> testClientList = new List<Client> {firstClient, secondClient};
+      Stylist.DeleteThisStylistsClients(testStylist.GetId());
+      string result = firstClient.GetName();
+      string deletedDescription="";
 
-    //   //Assert
-    //   Assert.AreEqual(deletedDescription , result);
+      //Assert
+      Assert.AreEqual(deletedDescription , result);
 
-    // }
+    }
 
-    // [TestMethod]
-    // public void Delete_DeletesNameInDatabase_String()
-    // {
-    //   //Arrange
-    //   Stylist testStylist = new Stylist("Jenny", "perms");
-    //   testStylist.Save();
-    //   string deletedName = "";
+    [TestMethod]
+    public void Delete_DeletesNameInDatabase_String()
+    {
+      //Arrange
+      Stylist testStylist = new Stylist("Jenny", "perms");
+      testStylist.Save();
+      string deletedName = "";
 
-    //   //Act
-    //   testStylist.Delete();
-    //   string result = Stylist.Find(testStylist.GetId()).GetName();
+      //Act
+      Stylist.Delete(testStylist.GetId());
+      string result = Stylist.Find(testStylist.GetId()).GetName();
       
-    //   //Assert
-    //   Assert.AreEqual(deletedName, result);
-    // }
+      //Assert
+      Assert.AreEqual(deletedName, result);
+    }
 
   }
 }
