@@ -29,9 +29,29 @@ Clone this repository: $ git clone https://github.com/stuart-gill/HairSalon.Solu
 Change into the work directory:: $ cd WordCounter.Solution
 To edit the project, open the project in your preferred text editor.
 
-Find stuart_gill.sql and stuart_gill_test.sql files in the top level of the project directory.
-Setup and Run MAMP. On the Starting page, click on the 'Tools' tab and open 'PHPMYADMIN'.
+Find stuart_gill.sql and stuart_gill_test.sql files in the top level of the project directory. These are the databases that the program will access. 
+
+Setup and Run MAMP. Click 'Start Servers' when the MAMP window pops up. On the Starting page, click on the 'Tools' tab and open 'PHPMYADMIN'.
 Click on the 'Import' tab and follow instructions to import stuart_gill.sql and stuart_gill_test.sql files into the current server.
+
+ALTERNATELY, if you would like to set up your own database rather than using the included databse, use the following command in your terminal to enter MySQL:
+'/Applications/MAMP/Library/bin/mysql --host=localhost -uroot -proot'
+
+You should then see a prompt like this:
+
+mysql>
+
+Once you do, enter the following commands:
+
+> CREATE DATABASE stuart_gill;
+> USE stuart_gill;
+> CREATE TABLE clients (client_id serial PRIMARY KEY, client_name VARCHAR(255), client_phone VARCHAR(255), stylist_id(INT));
+> CREATE TABLE stylists (stylist_id serial PRIMARY KEY, stylist_name VARCHAR(255), specialty VARCHAR(255));
+
+> CREATE DATABASE stuart_gill_test;
+> USE stuart_gill_test;
+> CREATE TABLE clients (client_id serial PRIMARY KEY, client_name VARCHAR(255), client_phone VARCHAR(255), stylist_id(INT));
+> CREATE TABLE stylists (stylist_id serial PRIMARY KEY, stylist_name VARCHAR(255), specialty VARCHAR(255));
 
 
 To run the program, first navigate to WordCounter.Solution/WordCounter and then type dotnet restore in terminal, then dotnet build, then dotnet run. Then navigate in your browser to the URL listed in your terminal. 
@@ -64,7 +84,6 @@ The tests test the ability of the program to:
 17. Get an empty list of all stylists when no stylists have yet been added
 18. Save a new stylist object to the database
 19. Automatically assign a new ID to each new stylist object when it is created
-20. 
 
 
 
