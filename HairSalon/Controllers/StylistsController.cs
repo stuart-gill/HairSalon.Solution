@@ -45,6 +45,25 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
+        //add specialty to stylists_specialties join table
+
+        [HttpPost("/stylists/{stylistId}/addSpecialty")]
+        public ActionResult AddSpecialty(int stylistId, int specialtyId)
+        {
+            Dictionary<string, object> model = new Dictionary<string, object>();
+            Stylist selectedStylist = Stylist.Find(stylistId);
+            Specialty specialty = Specialty.Find(specialtyId);
+            selectedStylist.AddSpecialty(specialty);
+            List<Specialty> stylistSpecialties = Stylist.GetSpecialties(stylistId);
+            List<Specialty> allSpecialties = Specialty.GetAll();
+            List<Client> stylistClients = selectedStylist.GetClients();
+            model.Add("stylistSpecialties", stylistSpecialties);
+            model.Add("allSpecialties", allSpecialties);
+            model.Add("stylist", selectedStylist);
+            model.Add("clients", stylistClients);
+            return View("Show", model);
+        }
+
         //delete stylist and all their clients too
         [HttpGet("/stylists/{stylistId}/delete")]
         public ActionResult Delete(int stylistId)
@@ -68,11 +87,16 @@ namespace HairSalon.Controllers
             newClient.Save();
             List<Client> stylistClients = foundStylist.GetClients();
             List<Specialty> stylistSpecialties = Stylist.GetSpecialties(foundStylist.GetId());
+            List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("stylistSpecialties", stylistSpecialties);
             model.Add("clients", stylistClients);
             model.Add("stylist", foundStylist);
+            model.Add("allSpecialties", allSpecialties);
 
             return View("Show", model);
         }
+
+
+
     }
 }

@@ -45,7 +45,7 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
-
+        //add specialty-stylist relationship to join table
         [HttpPost("/specialties/{specialtyId}")]
         public ActionResult AddStylist(int specialtyId, int stylistAdded)
         {
