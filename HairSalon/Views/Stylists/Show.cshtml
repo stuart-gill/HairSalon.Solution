@@ -30,6 +30,20 @@
 }
 </ol>
 
+<h4>Add more specialties for this stylist:</h4>
+    <form action = "/stylists/@Model["stylist"].GetId()" method = "post">
+        <input type = "text" name="stylistId" value =@Model["stylist"].GetId() hidden>
+        <label for = "specialtyAdded">Choose Specialty</label>
+        <select name = "specialtyAdded" type = "text"><br>
+            @foreach(var specialty in @Model["allSpecialties"])
+            {
+                <option value="@specialty.GetId()"> @specialty.GetName() </option>
+            }
+        </select>
+        <button class="btn btn-sm btn-primary" type = "submit"> Add Specialty </button>
+    </form>
+
+
 <p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client to this stylist!</a></p>
 <p><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist and their client list.</a></p>
 <p><a href='/stylists'>Return to stylist list</a></p>

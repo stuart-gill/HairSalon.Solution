@@ -144,21 +144,31 @@ namespace HairSalon.Tests
     }
 
     // [TestMethod]
-    // public void GetClients_ReturnsEmptyClientList_ClientList()
+    // public void GetSpecialtiesStylists_ReturnsSpecialtiesStylists_StylistList()
     // {
-    //   //Arrange
-    //   string name = "Jenny";
-    //   string specialty = "perms";
-    //   Stylist newStylist = new Stylist(name, specialty);
-    //   List<Client> newList = new List<Client> { };
+      // //Arrange
+      // string name = "Jenny";
+      // string specialty = "perms";
+      // Stylist newStylist = new Stylist(name, specialty);
+      // List<Client> newList = new List<Client> { };
 
-    //   //Act
-    //   List<Client> result = newStylist.GetClients();
+      // //Act
+      // List<Client> result = newStylist.GetClients();
 
-    //   //Assert
-    //   CollectionAssert.AreEqual(newList, result);
+      // //Assert
+      // CollectionAssert.AreEqual(newList, result);
     // }
 
+    // [Test Method]
+    // public void AddStylist_AddsStylistToStylistSpecialties()
+    // {
+      //Arrange
+
+      //Act
+
+      //Assert
+
+    // }
 
 
   }

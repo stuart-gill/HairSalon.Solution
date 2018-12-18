@@ -108,7 +108,7 @@ namespace HairSalon.Models
 
         public static List<Stylist> GetSpecialtiesStylists(int id)
         {
-            List<Stylist> specialtyStylists = new List<Stylist>{};
+            List<Stylist> specialtyStylists = new List<Stylist>();
             MySqlConnection conn = DB.Connection();
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
@@ -125,7 +125,7 @@ namespace HairSalon.Models
                 Stylist newStylist = new Stylist(stylistName, stylistId);
                 specialtyStylists.Add(newStylist);
             }
-            conn.Close();
+            conn.Close(); 
             if (conn != null)
             {
                 conn.Dispose();
