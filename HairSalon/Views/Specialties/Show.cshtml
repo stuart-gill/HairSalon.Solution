@@ -20,7 +20,7 @@
 </ol>
 
 <h4>Add more stylists for this specialty:</h4>
-    <form action = "/specialties/@Model["specialty"].GetId()/addStylist" method = "post">
+    <form action = "/specialties/@Model["specialty"].GetId()" method = "post">
         <input type = "text" name="specialtyId" value =@Model["specialty"].GetId() hidden>
         <label for = "stylistAdded">Choose Stylist</label>
         <select name = "stylistAdded" type = "text"><br>
@@ -34,7 +34,7 @@
 
 
 <p><a href='/specialty/@Model["specialty"].GetId()/delete'>Delete this specialty.</a></p>
-<p><a href='/specialties'>Return to stylist list</a></p>
+<p><a href='/specialties'>Return to specialties list</a></p>
 <p><a href='/'>Return to Main Page</a></p>
 
 </div>

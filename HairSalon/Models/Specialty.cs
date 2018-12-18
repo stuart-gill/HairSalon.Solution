@@ -114,7 +114,7 @@ namespace HairSalon.Models
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT stylists.* FROM specialties
                 JOIN stylists_specialties on (specialties.id = stylists_specialties.specialty_id)
-                JOIN stylists ON (stylists_specialties.stylist_id = stylists.id)
+                JOIN stylists ON (stylists_specialties.stylist_id = stylists.stylist_id)
                 WHERE specialties.id = @SpecialtyId;";
             cmd.Parameters.AddWithValue("@SpecialtyId", id);
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
