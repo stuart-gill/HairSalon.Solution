@@ -124,14 +124,14 @@ namespace HairSalon.Models
                 string stylistName = rdr.GetString(1);
                 Stylist newStylist = new Stylist(stylistName, stylistId);
                 specialtyStylists.Add(newStylist);
-                Console.WriteLine(stylistName);
+                Console.WriteLine(newStylist.GetName());
             }
             conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
-            
+
             return specialtyStylists;
         }
 

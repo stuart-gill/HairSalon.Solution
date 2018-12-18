@@ -21,7 +21,7 @@
 
 <h4>Add more stylists for this specialty:</h4>
     <form action = "/specialties/@Model["specialty"].GetId()" method = "post">
-        <input type = "text" name="specialtyId" value =@Model["specialty"].GetId() hidden>
+        <input type = "number" name="specialtyId" value =@Model["specialty"].GetId() hidden>
         <label for = "stylistAdded">Choose Stylist</label>
         <select name = "stylistAdded" type = "text"><br>
             @foreach(var stylist in @Model["allStylists"])

@@ -32,7 +32,7 @@
 
 <h4>Add more specialties for this stylist:</h4>
     <form action = "/stylists/@Model["stylist"].GetId()" method = "post">
-        <input type = "text" name="stylistId" value =@Model["stylist"].GetId() hidden>
+        <input type = "number" name="stylistId" value =@Model["stylist"].GetId() hidden>
         <label for = "specialtyAdded">Choose Specialty</label>
         <select name = "specialtyAdded" type = "text"><br>
             @foreach(var specialty in @Model["allSpecialties"])

@@ -171,7 +171,7 @@ namespace HairSalon.Models
                 string specialtyName = rdr.GetString(1);
                 Specialty newSpecialty = new Specialty(specialtyName, specialtyId);
                 stylistSpecialties.Add(newSpecialty);
-                Console.WriteLine(specialtyName);
+                Console.WriteLine(newSpecialty.GetName());
             }
             conn.Close();
             if (conn != null)
