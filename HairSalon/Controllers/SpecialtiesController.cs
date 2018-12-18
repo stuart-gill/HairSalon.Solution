@@ -37,7 +37,7 @@ namespace HairSalon.Controllers
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Specialty selectedSpecialty = Specialty.Find(specialtyId);
-            List<Stylist> specialtyStylists = Specialty.GetSpecialtiesStylists(specialtyId);
+            List<Stylist> specialtyStylists = Specialty.GetStylists(specialtyId);
             List<Stylist> allStylists = Stylist.GetAll();
             model.Add("specialty", selectedSpecialty);
             model.Add("specialtyStylists", specialtyStylists);
@@ -53,7 +53,7 @@ namespace HairSalon.Controllers
             Specialty selectedSpecialty = Specialty.Find(specialtyId);
             Stylist stylist = Stylist.Find(stylistAdded);
             selectedSpecialty.AddStylist(stylist);
-            List<Stylist> specialtyStylists = Specialty.GetSpecialtiesStylists(specialtyId);
+            List<Stylist> specialtyStylists = Specialty.GetStylists(specialtyId);
             List<Stylist> allStylists = Stylist.GetAll();
             model.Add("specialtyStylists", specialtyStylists);
             model.Add("allStylists", allStylists);

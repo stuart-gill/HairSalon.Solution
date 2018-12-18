@@ -11,9 +11,9 @@ namespace HairSalon.Models
         private string _name;
 
 
-        public Specialty(string name, int id=0)
+        public Specialty(string name, int id = 0)
         {
-            _name=name;
+            _name = name;
             _id = id;
         }
 
@@ -27,8 +27,8 @@ namespace HairSalon.Models
         {
             return _name;
         }
-        
-    
+
+
         public void Save()
         {
             MySqlConnection conn = DB.Connection();
@@ -41,7 +41,7 @@ namespace HairSalon.Models
             cmd.Parameters.Add(specialtyName);
             cmd.ExecuteNonQuery();
             _id = (int)cmd.LastInsertedId;
-            
+
             conn.Close();
             if (conn != null)
             {
@@ -75,7 +75,7 @@ namespace HairSalon.Models
             return allSpecialties;
         }
 
-        
+
 
         public static Specialty Find(int specialtyId)
         {
@@ -102,11 +102,11 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
-            Console.WriteLine(foundSpecialty.GetName());
+
             return foundSpecialty;
         }
 
-        public static List<Stylist> GetSpecialtiesStylists(int id)
+        public static List<Stylist> GetStylists(int id)
         {
             List<Stylist> specialtyStylists = new List<Stylist>();
             MySqlConnection conn = DB.Connection();
@@ -118,18 +118,20 @@ namespace HairSalon.Models
                 WHERE specialties.id = @SpecialtyId;";
             cmd.Parameters.AddWithValue("@SpecialtyId", id);
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
-            while(rdr.Read())
+            while (rdr.Read())
             {
                 int stylistId = rdr.GetInt32(0);
                 string stylistName = rdr.GetString(1);
                 Stylist newStylist = new Stylist(stylistName, stylistId);
                 specialtyStylists.Add(newStylist);
+                Console.WriteLine(stylistName);
             }
-            conn.Close(); 
+            conn.Close();
             if (conn != null)
             {
                 conn.Dispose();
             }
+            
             return specialtyStylists;
         }
 
@@ -191,17 +193,17 @@ namespace HairSalon.Models
         public override bool Equals(System.Object otherSpecialty)
         {
             if (!(otherSpecialty is Specialty))
-                {
-                    return false;
-                }
+            {
+                return false;
+            }
             else
-                {
-                    Specialty newSpecialty = (Specialty) otherSpecialty;
-                    bool idEquality = this.GetId() == newSpecialty.GetId();
-                    bool nameEquality = this.GetName() == newSpecialty.GetName();
+            {
+                Specialty newSpecialty = (Specialty)otherSpecialty;
+                bool idEquality = this.GetId() == newSpecialty.GetId();
+                bool nameEquality = this.GetName() == newSpecialty.GetName();
 
-                    return (idEquality && nameEquality);
-                }
+                return (idEquality && nameEquality);
+            }
         }
 
         // public static List<Copy> GetByAuthorTitle(string bookTitle, string authorName)
@@ -264,7 +266,7 @@ namespace HairSalon.Models
         //     return availableCopies;
         // }
 
-        
+
 
 
 
