@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<h3>Here are all of @Model["stylist"].GetName()'s clients:</h3>
+<h3>Here are all of @Model["stylist"].GetName()'s clients and specialties:</h3>
 
 @if (@Model["clients"].Count == 0)
 {
@@ -18,7 +18,19 @@
 }
 </ol>
 
-<p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client!</a></p>
+@if (@Model["stylistSpecialties"].Count == 0)
+{
+  <h4>@Model["stylist"].GetName() does not have any specialties at the moment. Add one with the link below:</h4>
+}
+
+<ol>
+@foreach (var specialty in @Model["stylistSpecialties"])
+{
+  <li><a href='/specialties/@specialty.GetId()'>@specialty.GetName()</a></li>
+}
+</ol>
+
+<p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client to this stylist!</a></p>
 <p><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist and their client list.</a></p>
 <p><a href='/stylists'>Return to stylist list</a></p>
 <p><a href='/'>Return to Main Page</a></p>

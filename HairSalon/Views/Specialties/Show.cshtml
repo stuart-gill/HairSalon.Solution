@@ -1,0 +1,40 @@
+@{
+  Layout = "_Layout";
+}
+
+<div class="container">
+
+<h3>Here are all of the stylists who have the specialty of @Model["specialty"].GetName():</h3>
+
+
+@if (@Model["specialtyStylists"].Count == 0)
+{
+  <h4>@Model["specialty"].GetName() does not have any stylists at the moment. Add one with the link below:</h4>
+}
+
+<ol>
+@foreach (var stylist in @Model["specialtyStylists"])
+{
+  <li><a href='/stylists/@stylist.GetId()'>@stylist.GetName()</a></li>
+}
+</ol>
+
+<h4>Add more stylists for this specialty:</h4>
+    <form action = "/specialties/@Model["specialty"].GetId()/addStylist" method = "post">
+        <input type = "text" name="specialtyId" value =@Model["specialty"].GetId() hidden>
+        <label for = "stylistAdded">Choose Stylist</label>
+        <select name = "stylistAdded" type = "text"><br>
+            @foreach(var stylist in @Model["allStylists"])
+            {
+                <option value="@stylist.GetId()"> @stylist.GetName() </option>
+            }
+        </select>
+        <button class="btn btn-sm btn-primary" type = "submit"> Add Stylist </button>
+    </form>
+
+
+<p><a href='/specialty/@Model["specialty"].GetId()/delete'>Delete this specialty.</a></p>
+<p><a href='/specialties'>Return to stylist list</a></p>
+<p><a href='/'>Return to Main Page</a></p>
+
+</div>

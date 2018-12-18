@@ -35,7 +35,10 @@ namespace HairSalon.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"INSERT INTO specialties (name) VALUES (@Name);";
-            cmd.Parameters.AddWithValue("@Name", this._name);
+            MySqlParameter specialtyName = new MySqlParameter();
+            specialtyName.ParameterName = "@Name";
+            specialtyName.Value = this._name;
+            cmd.Parameters.Add(specialtyName);
             cmd.ExecuteNonQuery();
             _id = (int)cmd.LastInsertedId;
             
@@ -150,6 +153,55 @@ namespace HairSalon.Models
             {
                 conn.Dispose();
             }
+        }
+
+        public static void ClearAll()
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM specialties;";
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public static void Delete(int id)
+        {
+            MySqlConnection conn = DB.Connection();
+            conn.Open();
+            var cmd = conn.CreateCommand() as MySqlCommand;
+            cmd.CommandText = @"DELETE FROM specialties WHERE id = (@thisId);";
+
+            MySqlParameter thisId = new MySqlParameter();
+            thisId.ParameterName = "@thisId";
+            thisId.Value = id;
+            cmd.Parameters.Add(thisId);
+            cmd.ExecuteNonQuery();
+            conn.Close();
+            if (conn != null)
+            {
+                conn.Dispose();
+            }
+        }
+
+        public override bool Equals(System.Object otherSpecialty)
+        {
+            if (!(otherSpecialty is Specialty))
+                {
+                    return false;
+                }
+            else
+                {
+                    Specialty newSpecialty = (Specialty) otherSpecialty;
+                    bool idEquality = this.GetId() == newSpecialty.GetId();
+                    bool nameEquality = this.GetName() == newSpecialty.GetName();
+
+                    return (idEquality && nameEquality);
+                }
         }
 
         // public static List<Copy> GetByAuthorTitle(string bookTitle, string authorName)

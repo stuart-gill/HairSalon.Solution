@@ -18,12 +18,13 @@ namespace HairSalon.Tests
     {
       Stylist.ClearAll();
       Client.ClearAll();
+      Specialty.ClearAll();
     }
 
     [TestMethod]
     public void StylistConstructor_CreatesInstanceOfStylist_Stylist()
     {
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       Assert.AreEqual(typeof(Stylist), testStylist.GetType());
     }
 
@@ -32,8 +33,8 @@ namespace HairSalon.Tests
     {
       //Arrange
       string name01 = "Jenny";
-      string specialty1 = "perms";
-      Stylist newStylist = new Stylist(name01, specialty1);
+
+      Stylist newStylist = new Stylist(name01);
 
       //Act
       string result = newStylist.GetName();
@@ -47,7 +48,7 @@ namespace HairSalon.Tests
     {
       //Arrange
       string name = "Test Stylist";
-      Stylist newStylist = new Stylist(name, "specialty");
+      Stylist newStylist = new Stylist(name);
     
       //Act
       int result = newStylist.GetId();
@@ -62,11 +63,10 @@ namespace HairSalon.Tests
       //Arrange
       string name01 = "Jenny";
       string name02 = "Kenny";
-      string specialty1 = "perms";
-      string specialty2 = "curls";
-      Stylist newStylist1 = new Stylist(name01, specialty1);
+
+      Stylist newStylist1 = new Stylist(name01);
       newStylist1.Save();
-      Stylist newStylist2 = new Stylist(name02, specialty2);
+      Stylist newStylist2 = new Stylist(name02);
       newStylist2.Save();
       List<Stylist> newList = new List<Stylist> { newStylist1, newStylist2 };
 
@@ -81,7 +81,7 @@ namespace HairSalon.Tests
     public void Find_ReturnsStylistInDatabase_Stylist()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       testStylist.Save();
 
       //Act
@@ -96,8 +96,8 @@ namespace HairSalon.Tests
     {
       //Arrange
       string name = "Jenny";
-      string specialty = "perms";
-      Stylist newStylist = new Stylist(name, specialty);
+
+      Stylist newStylist = new Stylist(name);
       List<Client> newList = new List<Client> { };
 
       //Act
@@ -121,8 +121,8 @@ namespace HairSalon.Tests
     public void Equals_ReturnsTrueIfNamesAreTheSame_Stylist()
     {
       //Arrange, Act
-      Stylist firstStylist = new Stylist("Jenny", "perms");
-      Stylist secondStylist = new Stylist("Jenny", "perms");
+      Stylist firstStylist = new Stylist("Jenny");
+      Stylist secondStylist = new Stylist("Jenny");
 
       //Assert
       Assert.AreEqual(firstStylist, secondStylist);
@@ -132,7 +132,7 @@ namespace HairSalon.Tests
     public void Save_SavesStylistToDatabase_StylistList()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       testStylist.Save();
 
       //Act
@@ -147,7 +147,7 @@ namespace HairSalon.Tests
     public void Save_DatabaseAssignsIdToStylist_Id()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       testStylist.Save();
 
       //Act
@@ -164,7 +164,7 @@ namespace HairSalon.Tests
     public void GetClients_RetrievesAllClientsWithStylist_ClientList()
     {
       //Arrange, Act
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       testStylist.Save();
       Client firstClient = new Client("George", "2065555555", testStylist.GetId());
       firstClient.Save();
@@ -182,7 +182,7 @@ namespace HairSalon.Tests
     public void DeleteClients_DeletesAllClientsWithStylist_ClientList()
     {
       //Arrange, Act
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       testStylist.Save();
       Client firstClient = new Client("George", "2065555555", testStylist.GetId());
       firstClient.Save();
@@ -202,7 +202,7 @@ namespace HairSalon.Tests
     public void Delete_DeletesNameInDatabase_String()
     {
       //Arrange
-      Stylist testStylist = new Stylist("Jenny", "perms");
+      Stylist testStylist = new Stylist("Jenny");
       testStylist.Save();
       string deletedName = "";
 

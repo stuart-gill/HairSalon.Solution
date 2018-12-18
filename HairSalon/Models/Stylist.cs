@@ -76,12 +76,10 @@ namespace HairSalon.Models
             var rdr = cmd.ExecuteReader() as MySqlDataReader;
             int StylistId = 0;
             string StylistName = "";
-            string Specialty = "";
             while(rdr.Read())
             {
             StylistId = rdr.GetInt32(0);
             StylistName = rdr.GetString(1);
-
             }
             Stylist newStylist = new Stylist(StylistName, StylistId);
             conn.Close();
@@ -162,9 +160,9 @@ namespace HairSalon.Models
             conn.Open();
             var cmd = conn.CreateCommand() as MySqlCommand;
             cmd.CommandText = @"SELECT specialties.* FROM stylists
-                JOIN stylists_specialties on (stylists.id = stylists_specialties.stylist_id)
+                JOIN stylists_specialties on (stylists.stylist_id = stylists_specialties.stylist_id)
                 JOIN specialties ON (stylists_specialties.specialty_id = specialties.id)
-                WHERE stylists.id = @StylistId;";
+                WHERE stylists.stylist_id = @StylistId;";
             cmd.Parameters.AddWithValue("@StylistId", id);
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while(rdr.Read())
