@@ -20,6 +20,10 @@ A C# program that allows the user to view, edit, enter (save), and delete both s
 9. Program then returns user to Jenny's detail page, including a list of her clients, each of which can now be clicked on to get more detail about the individual client. 
 10. On the stylist detail page, the user may choose to delete this stylist AND all their clients, which runs a delete function on both stylist and client tables to make sure both stylist and ALL clients sharing this stylist's id are deleted.
 11. From the individual client view pages, a single client may be edited or deleted. 
+12. Specialties may also be created. Unlike stylists, specialties may not be edited or deleted. 
+13. Once created on the new specialty page, a specialty may be associated with a stylist. 
+14. Similarly, once created on the new stylist page, a stylist may be associated with a specialty. 
+15. Any stylist may be remo
 
 ### Setup
 
