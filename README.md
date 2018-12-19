@@ -1,6 +1,6 @@
 # Hair Salon
 
-A C# program that allows the user to view, edit, enter (save), and delete both stylists and clients from a SQL database with a table for each. Stylists are related to clients in a one to many relationship. A stylist "foreign key" is stored for each client in the client table, allowing clients to be viewed and deleted in batches as they relate to their stylist. 
+A C# program that allows the user to view, edit, enter (save), and delete both stylists and clients from a SQL database with a table for each. Specialties may also be added. Stylists are related to clients in a one to many relationship. A stylist "foreign key" is stored for each client in the client table, allowing clients to be viewed and deleted in batches as they relate to their stylist. Specialties relate to Stylists in a many to many relationship, and may be viewed from either perspective. Stylists may be added to specialties and vice versa. 
 
 ## Plain English specifications for program functionality, starting from an empty database:
 
