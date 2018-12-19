@@ -4,7 +4,7 @@
 
 <div class="container">
 
-<h3>Here are all of @Model["stylist"].GetName()'s clients and specialties:</h3>
+<h3>Here are @Model["stylist"].GetName()'s clients:</h3>
 
 @if (@Model["clients"].Count == 0)
 {
@@ -17,6 +17,8 @@
   <li><a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()'>@client.GetName()</a></li>
 }
 </ol>
+
+<h3>And here are @Model["stylist"].GetName()'s specialties:</h3>
 
 @if (@Model["stylistSpecialties"].Count == 0)
 {

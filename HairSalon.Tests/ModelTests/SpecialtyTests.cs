@@ -161,7 +161,7 @@ namespace HairSalon.Tests
             List<Stylist> test = new List<Stylist> { newStylist1, newStylist2 };
 
             //Assert
-            CollectionAssert.AreEqual(newList, result);
+            CollectionAssert.AreEqual(test, result);
         }
 
         // [Test Method]

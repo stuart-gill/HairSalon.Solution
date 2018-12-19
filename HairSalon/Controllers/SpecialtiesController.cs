@@ -20,7 +20,7 @@ namespace HairSalon.Controllers
             return View();
         }
 
-        [HttpPost("/specialties/new")]
+        [HttpPost("/specialties")]
         public ActionResult Create(string specialtyName)
         {
             Specialty newSpecialty = new Specialty(specialtyName);
@@ -37,7 +37,7 @@ namespace HairSalon.Controllers
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Specialty selectedSpecialty = Specialty.Find(specialtyId);
-            List<Stylist> specialtyStylists = Specialty.GetStylists(specialtyId);
+            List<Stylist> specialtyStylists = selectedSpecialty.GetStylists();
             List<Stylist> allStylists = Stylist.GetAll();
             model.Add("specialty", selectedSpecialty);
             model.Add("specialtyStylists", specialtyStylists);
@@ -46,14 +46,14 @@ namespace HairSalon.Controllers
         }
 
         //add specialty-stylist relationship to join table
-        [HttpPost("/specialties/{specialtyId}")]
-        public ActionResult AddStylist(int specialtyId, int stylistAdded)
+        [HttpPost("/specialties/{specialtyId}/addStylist")]
+        public ActionResult AddStylist(int specialtyId, int stylistId)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Specialty selectedSpecialty = Specialty.Find(specialtyId);
-            Stylist stylist = Stylist.Find(stylistAdded);
+            Stylist stylist = Stylist.Find(stylistId);
             selectedSpecialty.AddStylist(stylist);
-            List<Stylist> specialtyStylists = Specialty.GetStylists(specialtyId);
+            List<Stylist> specialtyStylists = selectedSpecialty.GetStylists();
             List<Stylist> allStylists = Stylist.GetAll();
             model.Add("specialtyStylists", specialtyStylists);
             model.Add("allStylists", allStylists);
