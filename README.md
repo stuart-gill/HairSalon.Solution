@@ -23,7 +23,8 @@ A C# program that allows the user to view, edit, enter (save), and delete both s
 12. Specialties may also be created. Unlike stylists, specialties may not be edited or deleted. 
 13. Once created on the new specialty page, a specialty may be associated with a stylist. 
 14. Similarly, once created on the new stylist page, a stylist may be associated with a specialty. 
-15. Any stylist may be remo
+15. Any stylist may be edited (name only) or deleted. If deleted, the clients belonging to this stylist are deleted as well. 
+
 
 ### Setup
 
@@ -50,12 +51,16 @@ Once you do, enter the following commands:
 > CREATE DATABASE stuart_gill;
 > USE stuart_gill;
 > CREATE TABLE clients (client_id serial PRIMARY KEY, client_name VARCHAR(255), client_phone VARCHAR(255), stylist_id(INT));
-> CREATE TABLE stylists (stylist_id serial PRIMARY KEY, stylist_name VARCHAR(255), specialty VARCHAR(255));
+> CREATE TABLE stylists (stylist_id serial PRIMARY KEY, stylist_name VARCHAR(255));
+> CREATE TABLE specialties (id serial PRIMARY KEY, name VARCHAR(255));
+> CREATE TABLE stylists_specialties (id serial PRIMARY KEY, stylist_id (INT), specialty_id (INT))
 
 > CREATE DATABASE stuart_gill_test;
 > USE stuart_gill_test;
 > CREATE TABLE clients (client_id serial PRIMARY KEY, client_name VARCHAR(255), client_phone VARCHAR(255), stylist_id(INT));
-> CREATE TABLE stylists (stylist_id serial PRIMARY KEY, stylist_name VARCHAR(255), specialty VARCHAR(255));
+> CREATE TABLE stylists (stylist_id serial PRIMARY KEY, stylist_name VARCHAR(255));
+> CREATE TABLE specialties (id serial PRIMARY KEY, name VARCHAR(255));
+> CREATE TABLE stylists_specialties (id serial PRIMARY KEY, stylist_id (INT), specialty_id (INT))
 
 
 To run the program, first navigate to WordCounter.Solution/WordCounter and then type dotnet restore in terminal, then dotnet build, then dotnet run. Then navigate in your browser to the URL listed in your terminal. 
@@ -88,6 +93,19 @@ The tests test the ability of the program to:
 17. Get an empty list of all stylists when no stylists have yet been added
 18. Save a new stylist object to the database
 19. Automatically assign a new ID to each new stylist object when it is created
+20. Create a specialty object of the class Specialty
+21. Save a new specialty object to the database
+22. Automatically assign an id to a new specialty in the database
+23. Get the name of a specialty
+24. Get the id of a specialty
+25. Get a list of all specialties
+26. Find a specialty by its ID
+27. Return an empty list of all specialties when there are none added
+28. Determine if two specialties are duplicates
+29. Get all stylists assigned to a specialty from the join table
+30. Add a stylist to a specialty in the join table
+31. Get all specialties assigned to a stylist from the join table
+32. Add a specialty to a stylist in the join table
 
 
 

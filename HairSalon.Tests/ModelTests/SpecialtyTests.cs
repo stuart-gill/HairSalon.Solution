@@ -134,7 +134,7 @@ namespace HairSalon.Tests
         }
 
         [TestMethod]
-        public void Equals_ReturnsTrueIfNamesAreTheSame_Stylist()
+        public void Equals_ReturnsTrueIfNamesAreTheSame_Specialty()
         {
             //Arrange, Act
             Specialty firstSpecialty = new Specialty("perms");
