@@ -153,7 +153,7 @@ namespace HairSalon.Models
             }
         }
 
-        public static List<Specialty> GetSpecialties(int id)
+        public List<Specialty> GetSpecialties()
         {
             List<Specialty> stylistSpecialties = new List<Specialty> { };
             MySqlConnection conn = DB.Connection();
@@ -163,10 +163,10 @@ namespace HairSalon.Models
                 JOIN stylists_specialties on (stylists.stylist_id = stylists_specialties.stylist_id)
                 JOIN specialties ON (stylists_specialties.specialty_id = specialties.id)
                 WHERE stylists.stylist_id = @StylistId;";
-            MySqlParameter specialityIdParameter = new MySqlParameter();
-            specialityIdParameter.ParameterName = "@StylistId";
-            specialityIdParameter.Value = id;
-            cmd.Parameters.Add(specialityIdParameter);
+            MySqlParameter stylistIdParameter = new MySqlParameter();
+            stylistIdParameter.ParameterName = "@StylistId";
+            stylistIdParameter.Value = _stylistId;
+            cmd.Parameters.Add(stylistIdParameter);
 
             //cmd.Parameters.AddWithValue("@StylistId", id);
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
@@ -186,7 +186,7 @@ namespace HairSalon.Models
             return stylistSpecialties;
         }
 
-        public void AddSpecialty(int specialtyId)
+        public void AddSpecialty(Specialty newSpecialty)
         {
 
             MySqlConnection conn = DB.Connection();
@@ -201,7 +201,7 @@ namespace HairSalon.Models
 
             MySqlParameter speciality_id = new MySqlParameter();
             speciality_id.ParameterName = "@SpecialtyId";
-            speciality_id.Value = specialtyId;
+            speciality_id.Value = newSpecialty.GetId();
             cmd.Parameters.Add(speciality_id);
 
             cmd.ExecuteNonQuery();

@@ -36,7 +36,7 @@ namespace HairSalon.Controllers
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist selectedStylist = Stylist.Find(id);
             List<Client> stylistClients = selectedStylist.GetClients();
-            List<Specialty> stylistSpecialties = Stylist.GetSpecialties(selectedStylist.GetId());
+            List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();
             List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("stylist", selectedStylist);
             model.Add("clients", stylistClients);
@@ -48,13 +48,13 @@ namespace HairSalon.Controllers
         //add specialty-stylist relationship to join table
 
         [HttpPost("/stylists/{stylistId}/addSpecialty")]
-        public ActionResult AddSpecialty(int stylistId, int specialtyId)
+        public ActionResult AddSpecialty(int stylistId, int specialtyAdded)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Stylist selectedStylist = Stylist.Find(stylistId);
-            Specialty specialty = Specialty.Find(specialtyId);
-            selectedStylist.AddSpecialty(specialtyId);
-            List<Specialty> stylistSpecialties = Stylist.GetSpecialties(stylistId);
+            Specialty specialty = Specialty.Find(specialtyAdded);
+            selectedStylist.AddSpecialty(specialty);
+            List<Specialty> stylistSpecialties = selectedStylist.GetSpecialties();
             List<Specialty> allSpecialties = Specialty.GetAll();
             List<Client> stylistClients = selectedStylist.GetClients();
             model.Add("stylistSpecialties", stylistSpecialties);
@@ -86,7 +86,7 @@ namespace HairSalon.Controllers
             Client newClient = new Client(clientName, clientPhone, id);
             newClient.Save();
             List<Client> stylistClients = foundStylist.GetClients();
-            List<Specialty> stylistSpecialties = Stylist.GetSpecialties(foundStylist.GetId());
+            List<Specialty> stylistSpecialties = foundStylist.GetSpecialties();
             List<Specialty> allSpecialties = Specialty.GetAll();
             model.Add("stylistSpecialties", stylistSpecialties);
             model.Add("clients", stylistClients);

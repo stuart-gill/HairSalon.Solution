@@ -120,9 +120,6 @@ namespace HairSalon.Models
             specialityIdParameter.ParameterName = "@SpecialtyId";
             specialityIdParameter.Value = _id;
             cmd.Parameters.Add(specialityIdParameter);
-
-
-            //cmd.Parameters.AddWithValue("@SpecialtyId", this._id);
             MySqlDataReader rdr = cmd.ExecuteReader() as MySqlDataReader;
             while (rdr.Read())
             {
@@ -130,7 +127,6 @@ namespace HairSalon.Models
                 string stylistName = rdr.GetString(1);
                 Stylist newStylist = new Stylist(stylistName, stylistId);
                 specialtyStylists.Add(newStylist);
-                Console.WriteLine(newStylist.GetName());
             }
             conn.Close();
             if (conn != null)
@@ -140,7 +136,7 @@ namespace HairSalon.Models
 
             return specialtyStylists;
         }
-
+        //add specialty-stylist relationship to join table
         public void AddStylist(Stylist newStylist)
         {
             MySqlConnection conn = DB.Connection();
@@ -211,93 +207,6 @@ namespace HairSalon.Models
                 return (idEquality && nameEquality);
             }
         }
-
-        // public static List<Copy> GetByAuthorTitle(string bookTitle, string authorName)
-        // {
-        //     List<Copy> foundCopies = new List<Copy> { };
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"SELECT * FROM copies WHERE (name, author) = (@bookTitle, @authorName);";
-        //     MySqlParameter book_title = new MySqlParameter();
-        //     book_title.ParameterName = "@bookTitle";
-        //     book_title.Value = bookTitle;
-        //     cmd.Parameters.Add(book_title);
-        //     MySqlParameter author_name = new MySqlParameter();
-        //     author_name.ParameterName = "@authorName";
-        //     author_name.Value = authorName;
-        //     cmd.Parameters.Add(author_name);
-        //     var rdr = cmd.ExecuteReader() as MySqlDataReader;
-
-        //     while (rdr.Read())
-        //     {
-        //         int CopyId = rdr.GetInt32(0);
-        //         string CopyName = rdr.GetString(1);
-        //         string CopyAuthor = rdr.GetString(2);
-        //         bool CopyCheckedOut = rdr.GetBoolean(3);
-        //         Copy newCopy = new Copy(CopyName, CopyAuthor, CopyCheckedOut, CopyId);
-        //         foundCopies.Add(newCopy);
-        //     }
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        //     return foundCopies;
-        // }
-
-        // public static List<Copy> GetAvailable()
-        // {
-        //     List<Copy> availableCopies = new List<Copy> { };
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"SELECT * FROM copies WHERE checked_out = 0;";
-        //     var rdr = cmd.ExecuteReader() as MySqlDataReader;
-
-        //     while (rdr.Read())
-        //     {
-        //         int CopyId = rdr.GetInt32(0);
-        //         string CopyName = rdr.GetString(1);
-        //         string CopyAuthor = rdr.GetString(2);
-        //         bool CopyCheckedOut = rdr.GetBoolean(3);
-        //         Copy newCopy = new Copy(CopyName, CopyAuthor, CopyCheckedOut, CopyId);
-        //         availableCopies.Add(newCopy);
-        //     }
-        //     conn.Close();
-        //     if (conn != null)
-        //     {
-        //         conn.Dispose();
-        //     }
-        //     return availableCopies;
-        // }
-
-
-
-
-
-        //         public void Edit(bool newCheckoutStatus)
-        // {
-        //     MySqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //     var cmd = conn.CreateCommand() as MySqlCommand;
-        //     cmd.CommandText = @"UPDATE copies SET checked_out = @newCheckoutStatus WHERE id = @searchId;";
-        //     MySqlParameter searchId = new MySqlParameter();
-        //     searchId.ParameterName = "@searchId";
-        //     searchId.Value = _id;
-        //     cmd.Parameters.Add(searchId);
-        //     MySqlParameter checkoutStatus = new MySqlParameter();
-        //     checkoutStatus.ParameterName = "@newCheckoutStatus";
-        //     checkoutStatus.Value = newCheckoutStatus;
-        //     cmd.Parameters.Add(checkoutStatus);
-        //     cmd.ExecuteNonQuery();
-        //     _checkedOut = newCheckoutStatus;
-        //     conn.Close();
-        //     if (conn != null)
-        //         {
-        //             conn.Dispose();
-        //         }
-        // }
-
     }
 }
+        

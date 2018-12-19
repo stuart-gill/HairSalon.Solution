@@ -47,11 +47,11 @@ namespace HairSalon.Controllers
 
         //add specialty-stylist relationship to join table
         [HttpPost("/specialties/{specialtyId}/addStylist")]
-        public ActionResult AddStylist(int specialtyId, int stylistId)
+        public ActionResult AddStylist(int specialtyId, int stylistAdded)
         {
             Dictionary<string, object> model = new Dictionary<string, object>();
             Specialty selectedSpecialty = Specialty.Find(specialtyId);
-            Stylist stylist = Stylist.Find(stylistId);
+            Stylist stylist = Stylist.Find(stylistAdded);
             selectedSpecialty.AddStylist(stylist);
             List<Stylist> specialtyStylists = selectedSpecialty.GetStylists();
             List<Stylist> allStylists = Stylist.GetAll();
