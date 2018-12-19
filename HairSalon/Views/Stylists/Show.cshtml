@@ -4,33 +4,28 @@
 
 <div class="container">
 
-<h3>Here are @Model["stylist"].GetName()'s clients:</h3>
+<h1>@Model["stylist"].GetName()'s clients:</h1>
 
 @if (@Model["clients"].Count == 0)
 {
   <h4>@Model["stylist"].GetName() does not have any clients at the moment. Add one with the link below:</h4>
 }
 
-<ol>
+
 @foreach (var client in @Model["clients"])
 {
-  <li><a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()'>@client.GetName()</a></li>
-}
-</ol>
-
-<h3>And here are @Model["stylist"].GetName()'s specialties:</h3>
-
-@if (@Model["stylistSpecialties"].Count == 0)
-{
-  <h4>@Model["stylist"].GetName() does not have any specialties at the moment. Add one with the link below:</h4>
+  <h2><a href='/stylists/@Model["stylist"].GetId()/clients/@client.GetId()'>@client.GetName()</a></h2>
 }
 
-<ol>
+<br>
+<h1>@Model["stylist"].GetName()'s specialties:</h1>
+
+
 @foreach (var specialty in @Model["stylistSpecialties"])
 {
-  <li><a href='/specialties/@specialty.GetId()'>@specialty.GetName()</a></li>
+  <h2><a href='/specialties/@specialty.GetId()'>@specialty.GetName()</a></h2>
 } 
-</ol>
+<br>
 
 <h4>Add more specialties for this stylist:</h4>
     <form action = "/stylists/@Model["stylist"].GetId()/addSpecialty" method = "post">
@@ -46,9 +41,9 @@
     </form>
 
 
-<p><a href='/stylists/@Model["stylist"].GetId()/clients/new'>Add a new client to this stylist!</a></p>
-<p><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist and their client list.</a></p>
-<p><a href='/stylists'>Return to stylist list</a></p>
-<p><a href='/'>Return to Main Page</a></p>
+<h4><a href='/stylists/@Model["stylist"].GetId()/clients/new'>New client</a></h4>
+<h4><a href='/stylists/@Model["stylist"].GetId()/delete'>Delete this stylist (and their clients)</a></h4>
+<h4><a href='/stylists'>Stylists</a></h4>
+<h4><a href='/'>Home</a></h4>
 
 </div>

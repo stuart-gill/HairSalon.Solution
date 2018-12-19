@@ -5,8 +5,8 @@ A C# program that allows the user to view, edit, enter (save), and delete both s
 ## Plain English specifications for program functionality, starting from an empty database:
 
 1. Program asks user if they would like to add a stylist
-2. Input page allows for stylist name and any specialties they might have
-* EXAMPLE INPUT: "Jenny", "curly hair"
+2. Input page allows for stylist name
+* EXAMPLE INPUT: "Jenny"
 3. Program reads the input and sends them to the stylist table of the SQL database
 4. User may then add another stylist or view the details on the one stylist (ie. Jenny)
 5. If adding another stylist, return to step 2. If viewing details on one stylist, proceed to step 6. 
