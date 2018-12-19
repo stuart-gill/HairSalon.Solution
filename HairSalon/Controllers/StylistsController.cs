@@ -102,6 +102,15 @@ namespace HairSalon.Controllers
             return View(model);
         }
 
+        //delete all stylists and all clients
+        [HttpGet("/stylists/deleteAll")]
+        public ActionResult DeleteAll()
+        {
+            Stylist.ClearAll();
+            Client.ClearAll();
+            return View();
+        }
+
 
         //creates new Clients within a given Stylist:
         [HttpPost("/stylists/{id}")]
