@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: Dec 19, 2018 at 06:59 AM
--- Server version: 5.6.35
--- PHP Version: 7.0.15
+-- Generation Time: Dec 21, 2018 at 11:11 PM
+-- Server version: 5.7.23
+-- PHP Version: 7.2.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `clients` (
   `client_id` int(11) NOT NULL,
-  `client_name` varchar(256) NOT NULL,
+  `client_name` varchar(255) NOT NULL,
   `client_phone` varchar(255) NOT NULL,
   `stylist_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -52,8 +52,7 @@ CREATE TABLE `specialties` (
 
 CREATE TABLE `stylists` (
   `stylist_id` int(11) NOT NULL,
-  `stylist_name` varchar(256) NOT NULL,
-  `specialty` varchar(256) NOT NULL
+  `stylist_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -73,16 +72,14 @@ CREATE TABLE `stylists_specialties` (
 --
 
 INSERT INTO `stylists_specialties` (`id`, `stylist_id`, `specialty_id`) VALUES
-(19, 0, 0),
-(20, 0, 0),
-(21, 0, 0),
-(22, 85, 66),
-(23, 94, 72),
-(24, 96, 73),
-(25, 104, 79),
-(26, 106, 80),
-(27, 114, 81),
-(28, 115, 83);
+(1, 1, 6),
+(2, 3, 7),
+(3, 11, 8),
+(4, 12, 10),
+(5, 13, 16),
+(6, 15, 17),
+(7, 23, 18),
+(8, 24, 20);
 
 --
 -- Indexes for dumped tables
@@ -120,22 +117,26 @@ ALTER TABLE `stylists_specialties`
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=136;
+  MODIFY `client_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
 --
 -- AUTO_INCREMENT for table `specialties`
 --
 ALTER TABLE `specialties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
 --
 -- AUTO_INCREMENT for table `stylists`
 --
 ALTER TABLE `stylists`
-  MODIFY `stylist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+  MODIFY `stylist_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- AUTO_INCREMENT for table `stylists_specialties`
 --
 ALTER TABLE `stylists_specialties`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

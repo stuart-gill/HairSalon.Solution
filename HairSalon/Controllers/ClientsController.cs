@@ -40,11 +40,18 @@ namespace HairSalon.Controllers
     }
 
 
-    [HttpPost("/clients/delete")]
+    [HttpGet("/clients/deleteAll")]
     public ActionResult DeleteAll()
     {
       Client.ClearAll();
       return View();
+    }
+
+    [HttpGet("/clients")]
+    public ActionResult Index()
+    {
+        List<Client> allClients = Client.GetAll();
+        return View(allClients);
     }
 
     [HttpGet("/stylists/{stylistId}/clients/{clientId}/edit")]
